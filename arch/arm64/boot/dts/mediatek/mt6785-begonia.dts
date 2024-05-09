@@ -1,0 +1,38 @@
+/dts-v1/;
+#include "mt6785.dtsi"
+
+/ {
+	model = "Redmi Note 8 Pro";
+	compatible = "xiaomi,begonia", "mediatek,mt6785";
+	chassis-type = "handset";
+
+	chosen {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		/* needed by Little Kernel */
+		bootargs = "";
+
+		framebuffer@7d9b0000 {
+			compatible = "simple-framebuffer";
+			reg = <0 0x7d9b0000 0 0x2250000>;
+			width = <1080>;
+			height = <2340>;
+			stride = <(1088 * 4)>;
+			format = "a8r8g8b8";
+		};
+	};
+
+	/* needed by Little Kernel */
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+	};
+
+	/* needed by Little Kernel */
+	scp {
+		compatible = "mediatek,scp";
+	};
+};
